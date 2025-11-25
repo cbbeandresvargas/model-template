@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Sidebar from "../components/Sidebar.astro";
+
+// All 38 images
+const images = Array.from(
+    { length: 38 },
+    (_, i) => `image/foto (${i + 1}).webp`,
+);
+---
+
+<Layout title="Galería - Valentina Arce">
+    <section class="s-gallery">
+        <Sidebar />
+
+        <div class="content-page gallery-wrap">
+            <div class="content-inner">
+                <div class="title-wrapper text-center">
+                    <h2 class="title">Mi Galería</h2>
+                    <div class="subtitle">
+                        <p>
+                            Aquí encontrarás una selección de mis trabajos
+                            fotográficos más recientes y destacados.
+                        </p>
+                    </div>
+                </div>
+                <div class="grid-single">
+                    <div class="grid-sizer"></div>
+                    {
+                        images.map((img, i) => (
+                            <div class="grid-item">
+                                <a href={img} data-effect="mfp-zoom-in">
+                                    <img
+                                        class="b-lazy"
+                                        data-src={img}
+                                        src={img}
+                                        alt={`Imagen de Galería ${i + 1}`}
+                                    />
+                                </a>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

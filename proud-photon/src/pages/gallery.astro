@@ -1,0 +1,289 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Sidebar from "../components/Sidebar.astro";
+
+// Simplified gallery data - you can expand this with all images from the original HTML
+const albums = {
+    "moda-editorial": [
+        {
+            img: "image/foto (8).webp",
+            title: "Elegancia Nocturna Urbana",
+            desc: "Un retrato sofisticado en un entorno moderno y oscuro...",
+        },
+        {
+            img: "image/foto (9).webp",
+            title: "Estilo Urbano entre la Naturaleza",
+            desc: "Una imagen de moda que contrasta el estilo vanguardista...",
+        },
+        {
+            img: "image/foto (14).webp",
+            title: "Silueta al Atardecer",
+            desc: "Un impresionante retrato de moda capturado durante el atardecer...",
+        },
+        {
+            img: "image/foto (19).webp",
+            title: "Glamour Futurista y Brillante",
+            desc: "Una imagen audaz y festiva...",
+        },
+        {
+            img: "image/foto (22).webp",
+            title: "Misterio y Movimiento",
+            desc: "Un retrato artístico que juega con el movimiento...",
+        },
+        {
+            img: "image/foto (24).webp",
+            title: "Sofisticación Clásica",
+            desc: "Una pose elegante que evoca el glamour de épocas pasadas...",
+        },
+        {
+            img: "image/foto (25).webp",
+            title: "Frescura Casual en el Parque",
+            desc: "Un retrato de moda relajado y fresco...",
+        },
+        {
+            img: "image/foto (26).webp",
+            title: "Brillo Natural y Estilo Relajado",
+            desc: "Esta imagen resalta la luz natural...",
+        },
+        {
+            img: "image/foto (31).webp",
+            title: "Alegría en las Alturas Urbanas",
+            desc: "Una instantánea llena de alegría y naturalidad...",
+        },
+    ],
+    retratos: [
+        {
+            img: "image/foto (3).webp",
+            title: "Elegancia Urbana bajo el Sol",
+            desc: "Un retrato de medio cuerpo...",
+        },
+        {
+            img: "image/foto (4).webp",
+            title: "Mirada Directa y Cautivadora",
+            desc: "Un retrato que enfatiza la conexión visual...",
+        },
+        {
+            img: "image/foto (6).webp",
+            title: "Reflexión y Serenidad Urbana",
+            desc: "Un primer plano que captura un momento de quietud...",
+        },
+        {
+            img: "image/foto (20).webp",
+            title: "Estilo Creativo con Elementos Pop Art",
+            desc: "Un retrato artístico y audaz...",
+        },
+        {
+            img: "image/foto (21).webp",
+            title: "Alegría Compartida",
+            desc: "Una toma dinámica que captura la esencia...",
+        },
+        {
+            img: "image/foto (23).webp",
+            title: "Elegancia Clásica con Toque Moderno",
+            desc: "Un retrato sofisticado con un toque clásico...",
+        },
+        {
+            img: "image/foto (27).webp",
+            title: "Retrato Artístico con Iluminación Dramática",
+            desc: "Este retrato se centra en la expresión...",
+        },
+        {
+            img: "image/foto (29).webp",
+            title: "Instante Soleado y Natural",
+            desc: "Un retrato espontáneo y natural...",
+        },
+        {
+            img: "image/foto (30).webp",
+            title: "Conexión con la Naturaleza",
+            desc: "Un retrato sereno que muestra a la modelo...",
+        },
+    ],
+    pasarela: [
+        {
+            img: "image/foto (32).webp",
+            title: "Energía en la Pista",
+            desc: "Momentos capturados de desfiles de moda...",
+        },
+        {
+            img: "image/foto (33).webp",
+            title: "Energía en la Pista",
+            desc: "Momentos capturados de desfiles de moda...",
+        },
+        {
+            img: "image/foto (37).webp",
+            title: "Energía en la Pista",
+            desc: "Momentos capturados de desfiles de moda...",
+        },
+        {
+            img: "image/foto (38).webp",
+            title: "Energía en la Pista",
+            desc: "Momentos capturados de desfiles de moda...",
+        },
+    ],
+    belleza: [
+        {
+            img: "image/foto (1).webp",
+            title: "Elegancia Urbana bajo el Sol",
+            desc: "Un retrato de medio cuerpo...",
+        },
+        {
+            img: "image/foto (2).webp",
+            title: "Mirada Directa y Cautivadora",
+            desc: "Un retrato que enfatiza la conexión visual...",
+        },
+        {
+            img: "image/foto (5).webp",
+            title: "Brillo Nocturno y Estilo Urbano",
+            desc: "Un retrato de noche...",
+        },
+        {
+            img: "image/foto (10).webp",
+            title: "Moda Oscura en Jardín Exótico",
+            desc: "Un retrato de moda en un exuberante jardín...",
+        },
+        {
+            img: "image/foto (17).webp",
+            title: "Silueta al Atardecer",
+            desc: "Una silueta dramática de una mujer al atardecer...",
+        },
+        {
+            img: "image/foto (28).webp",
+            title: "Noche de Bolos con Estilo Glitter",
+            desc: "Un retrato vibrante en una pista de bolos...",
+        },
+        {
+            img: "image/foto (34).webp",
+            title: "Reflexión Urbana y Luz Dorada",
+            desc: "Un retrato en exterior con luz natural...",
+        },
+        {
+            img: "image/foto (35).webp",
+            title: "Estilo Urbano Casual y Vibrante",
+            desc: "Una imagen de cuerpo completo...",
+        },
+        {
+            img: "image/foto (36).webp",
+            title: "Glamour Retro y Colores Pop",
+            desc: "Un retrato de moda con un aire retro...",
+        },
+    ],
+};
+---
+
+<Layout title="Valentina Arce - Galería">
+    <section class="gallery">
+        <Sidebar />
+
+        <div class="content-page gallery-content gallery-wrap">
+            <div class="content-inner">
+                <div class="title-wrapper text-center">
+                    <h2 class="title">Galería</h2>
+                    <div class="subtitle">
+                        <p>
+                            Explora mi portafolio de modelaje, donde cada imagen
+                            cuenta una historia y expresa una visión única.
+                            Descubre la versatilidad y pasión en cada proyecto.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="album-tab">
+                    <a href="#album-moda-editorial" class="is-active"
+                        >Moda Editorial</a
+                    >
+                    <a href="#album-retratos">Retratos</a>
+                    <a href="#album-pasarela">Pasarela</a>
+                    <a href="#album-belleza">Belleza</a>
+                </div>
+
+                <div class="grid-album is-active" id="album-moda-editorial">
+                    <div class="grid-sizer"></div>
+                    {
+                        albums["moda-editorial"].map((item) => (
+                            <div class="grid-item album-item">
+                                <a href="/gallery-single">
+                                    <div class="album-thumb">
+                                        <img
+                                            src={item.img}
+                                            data-src={item.img}
+                                            class="b-lazy"
+                                            alt={item.title}
+                                        />
+                                    </div>
+                                    <div class="album-name">{item.title}</div>
+                                    <div class="album-desc">{item.desc}</div>
+                                </a>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <div class="grid-album" id="album-retratos">
+                    <div class="grid-sizer"></div>
+                    {
+                        albums["retratos"].map((item) => (
+                            <div class="grid-item album-item">
+                                <a href="/gallery-single">
+                                    <div class="album-thumb">
+                                        <img
+                                            src={item.img}
+                                            data-src={item.img}
+                                            class="b-lazy"
+                                            alt={item.title}
+                                        />
+                                    </div>
+                                    <div class="album-name">{item.title}</div>
+                                    <div class="album-desc">{item.desc}</div>
+                                </a>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <div class="grid-album" id="album-pasarela">
+                    <div class="grid-sizer"></div>
+                    {
+                        albums["pasarela"].map((item) => (
+                            <div class="grid-item album-item">
+                                <a href="/gallery-single">
+                                    <div class="album-thumb">
+                                        <img
+                                            src={item.img}
+                                            data-src={item.img}
+                                            class="b-lazy"
+                                            alt={item.title}
+                                        />
+                                    </div>
+                                    <div class="album-name">{item.title}</div>
+                                    <div class="album-desc">{item.desc}</div>
+                                </a>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <div class="grid-album" id="album-belleza">
+                    <div class="grid-sizer"></div>
+                    {
+                        albums["belleza"].map((item) => (
+                            <div class="grid-item album-item">
+                                <a href="/gallery-single">
+                                    <div class="album-thumb">
+                                        <img
+                                            src={item.img}
+                                            data-src={item.img}
+                                            class="b-lazy"
+                                            alt={item.title}
+                                        />
+                                    </div>
+                                    <div class="album-name">{item.title}</div>
+                                    <div class="album-desc">{item.desc}</div>
+                                </a>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
